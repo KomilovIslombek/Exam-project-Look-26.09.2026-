@@ -28,10 +28,10 @@
 			</div>
 			<div class="navbar-footer">
 				<form id="userAdd">
-					<input id="usernameInput" type="text" placeholder="username..." required>
-					<input id="telephoneInput" type="number" placeholder="telephone..." required>
+					<input id="usernameInput" type="text" name="username" placeholder="username..." required>
+					<input id="telephoneInput" type="number" name="contact" placeholder="telephone..." required>
 					<button type="submit">
-						<img src="https://img.icons8.com/pastel-glyph/64/000000/add-user-male--v2.png" alt="plus-icon">
+						<img style="width: 24px;" src="https://img.icons8.com/pastel-glyph/64/000000/add-user-male--v2.png" alt="plus-icon">
 					</button>
 				</form>
 			</div>
@@ -60,7 +60,7 @@
 			</div>
 			<div class="main-footer">
 				<form id="foodsForm">
-					<select id="foodsSelect">
+					<select id="foodsSelect" name="foodId">
 						<!-- mock food. keyin o'chirib tashlang
 						<option>cola</option>
 						<option>fanta</option>
@@ -70,7 +70,7 @@
 						<option>combo</option>
 						<option>spinner</option> -->
 					</select>
-					<input id="foodsCount" type="number" placeholder="count" required>
+					<input id="foodsCount" type="number" name="count" placeholder="count" required>
 					<button type="submit">
 						<img src="https://img.icons8.com/plasticine/100/000000/plus-math.png" alt="plus-button" height="35">
 					</button>
@@ -80,6 +80,10 @@
 	</div>
 	<script src="./js/database.js"></script>
 	<script src="./js/util.js"></script>
-	<script src="./js/look.js"></script>
+	<!-- <script src="./js/look.js"></script> -->
+
+	<script src="./js/class.orders.js"></script>
+
+	<script src="./js/ik-look.js"></script>
 </body>
 </html>

@@ -1,5 +1,9 @@
 html {
-	box-sizing: inherit;
+	box-sizing: border-box;
+}
+
+.empty-users{
+	margin: 10px 15px;
 }
 
 *,
@@ -11,14 +15,20 @@ html {
 	list-style-type: none;
 }
 
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
 body {
 	font-family: 'Balsamiq Sans', cursive;
 }
 
 .container {
 	display: flex;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	min-height: 100%;
+	height: 100%;
 }
 
 /* NAVBAR_SECTION */
@@ -66,7 +76,7 @@ body {
 	transition: box-shadow 0.3s ease;
 }
 
-.customer-item:hover {
+.customer-item:hover, .customer-item.active {
 	background-color: red;
 	color: white;
 }
@@ -96,11 +106,12 @@ body {
 .navbar-footer form {
 	display: flex;
 	flex-direction: column;
+	gap: 5px;
 }
 .navbar-footer button, input {
-	padding: 10px;
-	font-size: 20px;
-	margin-bottom: 8px;
+	/* padding: 5px 0; */
+	font-size: 15px;
+	/* margin-bottom: 8px; */
 	outline: none;
 }
 
@@ -131,12 +142,12 @@ body {
 .main-headers .customer-name {
 	flex-grow: 1;
 	text-align: center;
-	font-size: 50px;
+	font-size: 35px;
 }
 
 .cutomer-id-wrapper span {
 	display: inline-block;
-	font-size: 40px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -159,18 +170,20 @@ body {
 	overflow: auto;
 	width: 100%;
 	padding: 20px;
+	gap: 10px;
+	/* grid-template-columns: minmax(auto, auto-fill); */
 }
 
 .order-item {
 	display: flex;
 	flex-direction: column;
-	margin-right: 20px;
+	/* justify-content: flex-end; */
 	border: 2px solid black;
 	border-radius: 10px;
 	overflow: hidden;
 	transition: box-shadow 0.3s ease;
-	width: 470px;
-	flex-shrink: 0;
+	width: 33.3%;
+	/* aspect-ratio: 1 / 1; */
 }
 
 .order-item:hover {
@@ -178,23 +191,32 @@ body {
 }
 
 .order-item img {
-	display: block;
+	/* inset: 0;
+	
+	
+	position: absolute; */
+	/* display: block; */
 	width: 100%;
-	height: 500px;
+	height: 250px;	
+	
+	/* height: 500px; */
 	object-fit: cover;
 }
 
 .order-item div {
+	z-index: 5;
 	display: flex;
 	justify-content: space-between;
 	background-color: orange;
 	padding: 15px;
+	flex-grow: 1;
+	
 }
 
 .order-item span {
 	display: inline-block;
 	background-color: orange;
-	font-size: 28px;
+	font-size: 21px;
 	font-weight: bold;
 }
 
@@ -214,9 +236,9 @@ body {
 }
 
 .main-footer select, input, button {
-	padding: 10px;
+	padding: 8px;
 	margin-bottom: 5px;
-	font-size: 30px;
+	font-size: 20px;
 	outline: none;
 }
 
