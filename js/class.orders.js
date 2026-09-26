@@ -85,7 +85,7 @@ class Orders {
         this.state.clickedUser = clickedUser
     }
 
-    render(userId = this.state.clickedUser.userId, userName = this.state.clickedUser.username) {
+    render(userId = this.state.clickedUser?.userId || null, userName = this.state.clickedUser?.username || null) {
         let orders = this.state.orders
 
         if(userId) {
