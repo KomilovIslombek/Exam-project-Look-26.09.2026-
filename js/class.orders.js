@@ -130,7 +130,6 @@ class Orders {
 
     async render(userId = this.state.clickedUser?.userId || null, userName = this.state.clickedUser?.username || null) {
         let orders = await this.getOrdersFromBackend() || null
-        console.log('inside render', orders);
         
         let initClickedUser = await this.initClickedUser() || null
 
