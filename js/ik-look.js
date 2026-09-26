@@ -14,9 +14,10 @@ class Users {
             users: this.getUsersFromLocalStorage()
         }
 
-        this.render()
+        this.getUsersFromBackend()
         this.bindEvents()
     }
+
 
     getUsersFromLocalStorage() {
         const rawData = localStorage.getItem(this.localStorageKey)
@@ -34,20 +35,38 @@ class Users {
         }
     }
 
-    saveUsersToLocalStorage() {
+    async getUsersFromBackend() {
+        try {
+            const res = await axios.get(API+'/users')
+            
+            if(res.data.status == 200) {
+                this.saveUsersToLocalStorage(res.data.data)
+                
+                this.render()
+
+                return res.data.data 
+            }
+            
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            return []
+        }
+    }
+
+    saveUsersToLocalStorage(users) {
         localStorage.setItem(
         this.localStorageKey,
-        JSON.stringify(this.state.users)
+        JSON.stringify(users)
         )
     }
 
     render() {
-        const users = this.state.users
+        const users = this.getUsersFromLocalStorage()
 
-        this.customersListElement.innerHTML = users.map(({userId, username, contact}) => {
+        this.customersListElement.innerHTML = users.map(({userId, username, telephone}) => {
             return `<li class="customer-item" data-user-id="${userId}" data-user-name="${username}">
 						<span class="customer-name">${username}</span>
-						<a class="customer-phone" href="tel:${contact}">${contact}</a>
+						<a class="customer-phone" href="tel:${telephone}">${telephone}</a>
 					</li>`
         }).join('')
 
@@ -62,34 +81,32 @@ class Users {
         }
     }
 
-    addUser(newUser) {
-        if(!newUser.contact) return 'new User is not defined!'
-        
-        this.state.users.push(newUser)
-        this.saveUsersToLocalStorage();
-        this.render()
-    }
-
-    onAdFormSubmit = (event) => {
+    onAdFormSubmit = async (event) => {
         event.preventDefault()
 
         const username = event.target.username.value.trim()
-        const contact = event.target.contact.value.trim()
+        const telephone = event.target.contact.value.trim()
 
         if(!username || username.length > 30){
             return alert('Invalid username!')
         }
-        if(!(/^998(9[0123456789|3[3]|7[1]|8[8])[0-9]{7}$/).test(contact)){
+        if(!(/^998(9[0123456789|3[3]|7[1]|8[8])[0-9]{7}$/).test(telephone)){
             return alert('Invalid contact!')
         }
 
-        const newUser = {
-            userId: crypto.randomUUID(),
-            username: username ?? '',
-            contact: contact ?? ''
+        try {
+            const res = await axios.post(API+'/users', {username, telephone})
+            console.log();
+            if(res.data.status == 201) {
+                this.getUsersFromBackend()
+            }
+        } catch (err) {
+            alert(err.response);
+            console.log(err.response);
+            
         }
+        
 
-        this.addUser(newUser)
         event.target.username.focus();
         event.target.username.value = ''
         event.target.contact.value = ''
