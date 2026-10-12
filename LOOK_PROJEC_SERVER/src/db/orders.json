@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1,
+        "userId": 2,
+        "foodId": 1,
+        "foods": [],
+        "count": 5
+    },
+    {
+        "id": 2,
+        "userId": 2,
+        "foodId": 4,
+        "count": 2
+    },
+    {
+        "id": 3,
+        "userId": 1,
+        "foodId": 2,
+        "count": 3
+    },
+    {
+        "id": 4,
+        "userId": 1,
+        "foodId": 7,
+        "count": 1
+    },
+    {
+        "id": 5,
+        "userId": 3,
+        "foodId": 6,
+        "count": 2
+    }
+]
