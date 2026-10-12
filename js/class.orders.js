@@ -130,6 +130,7 @@ class Orders {
 
     async render(userId = this.state.clickedUser?.userId || null, userName = this.state.clickedUser?.username || null) {
         let orders = await this.getOrdersFromBackend() || null
+        console.log('inside render', orders);
         
         let initClickedUser = await this.initClickedUser() || null
 
@@ -152,7 +153,8 @@ class Orders {
 
                 return `
                 <li class="order-item">
-                    <img src="${API}${food_img}">
+                    <!-- <img src="${API.replace('/api/v1', '/')}${food_img}"> -->
+                    <img src="${food_img}">
                     <div>
                         <span class="order-name">${food_name}</span>
                         <span class="order-count">${order.count}</span>
